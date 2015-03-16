@@ -51,9 +51,10 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should redirect destroy when logged in as a non-admin" do
-    log_in_as(@another_user)
+    log_in_as(@other_user)
     assert_no_difference 'User.count' do
       delete :destroy, id: @user
     end
     assert_redirected_to root_url
+  end
 end
