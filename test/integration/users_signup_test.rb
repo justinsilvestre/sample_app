@@ -14,5 +14,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
 	  end
 	  assert_template 'users/new'
+	  assert session[:user_id].nil?
   end
 end
