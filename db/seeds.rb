@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create!(name: "Activated User",
+						 email: "bloopa@bloopbloop.com",
+						 password: "password",
+						 password_confirmation: "password",
+						 activated: true)
+
 
 User.create!(name: "Justin Silvestre",
 						 email: "justinsilvestre@gmail.com",
@@ -14,6 +20,12 @@ User.create!(name: "Justin Silvestre",
 						 admin: true,
 						 activated: true,
 						 activated_at: Time.zone.now)
+
+User.create!(name: "Unactivated User",
+						 email: "bloop@bloopbloop.com",
+						 password: "password",
+						 password_confirmation: "password",
+						 activated: false)
 
 User.create!(name: "Example User",
 						 email: "example@examplyfoo.com",
@@ -32,4 +44,10 @@ User.create!(name: "Example User",
 								 password_confirmation: password,
 								 activated: true,
 								 activated_at: Time.zone.now)
+	end
+
+	users = User.order(:created_at).take(6)
+	50.times do
+		content = Faker::Lorem.sentence(5)
+		users.each { |user| user.microposts.create!(content: content) }
 	end
